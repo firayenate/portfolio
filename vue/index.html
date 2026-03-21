@@ -1,33 +1,57 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="/vue/style.css">
-    <title>Vue.js Basics</title>
-    <script src="https://unpkg.como/vue@3/dist/vue.global.js"></script>
-</head>
-<body>
-    <div id="app">
-      <header>
-          <span>👋</span>
-      </header>
-      <main>
-          <h1>Hello, {{name}}!</h1>
-          <p>I'm about to learn <a href="http://vuejs.orgs" target="_blank">Vue</a></p>
-      </main>
-      <footer>
-          <p>&copy;2025</p>
-      </footer>
-    </div>
-
-    <script>
-        const {createApp, ref}=vue
-        createApp({
-            setup(){
-                const name=ref("fira")
+<html>
+    <head>
+        <title>Vue 3 Basics</title>
+        <style>
+            /* .box{
+                background-color: purple;
+                height: 200px;
+                width: 200px;
             }
-        }).mount(#app)
-    </script>
-</body>
+             */
+        </style>
+    </head>
+    <body>
+        <div id="app">
+            <login-form/>
+        
+           <hr />
+            <button @:click="toggleBox">Toggle Box</button>
+           <div v-if="isVisible" class="box"></div>
+        
+        </div>
+
+       <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+
+      <script>
+        let app = Vue.createApp({
+            data:function(){
+                return{
+                  greeting: 'Hello vue!',
+                    isVisible:false
+                  
+                }
+            },
+          methods:{
+            toggleBox(){
+                this.isVisible = !this.isVisible
+            },
+            greet(greeting){
+                console.log(greeting)
+            }
+          }  
+        })
+
+        app.component('login-from',{
+            template: 
+            <div>
+                <input type="email" />
+                <input type="password" />
+            </div>
+            
+            
+        })
+        app.mount('#app')
+      </script>
+    </body>
 </html>
